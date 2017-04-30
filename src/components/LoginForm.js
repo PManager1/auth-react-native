@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, TextInput } from 'react-native';
 
-// import firebase from 'firebase';
 import { Header, Button, Card, CardSection } from './common';
 
 class LoginForm extends Component {
@@ -9,7 +8,10 @@ class LoginForm extends Component {
     return(
       <Card>
           <CardSection>
+            <TextInput style={{ height: 40, width: 100 }}/>
+
           </CardSection>
+
 
           <CardSection>
             <Button>
