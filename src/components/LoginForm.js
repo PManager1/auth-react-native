@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-// import { TextInput } from 'react-native';
 import firebase from 'firebase';
 import { Button, Card, CardSection, Input } from './common';
 
 class LoginForm extends Component {
   state = { email: '', password: '' };
+
+  onButtonPress(){
+    // we'll try to authenticate the user.
+    const{ email, password } = this.state;
+    firebase.auth().signInWithEmailAndPassword();
+  }
 
   render() {
     return (
@@ -34,7 +39,9 @@ class LoginForm extends Component {
         </Text>
 
         <CardSection>
-
+          <Button  onPress={this.onButtonPress.bind(this)}>
+            Log in
+          </Button>
         </CardSection>
       </Card>
     );
