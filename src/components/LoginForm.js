@@ -13,6 +13,7 @@ class LoginForm extends Component {
           <CardSection>
             <Input
             label="Email"
+            secureTextEntry="false"
             placeholder="user@email.com"
             value={this.state.email}
             onChnageText={text => this.setState({ text })}
@@ -22,6 +23,7 @@ class LoginForm extends Component {
           <CardSection>
             <Input
             label="Password"
+            secureTextEntry="true"
             placeholder="Password"
             value={this.state.password}
             onChnageText={text => this.setState({ text })}
