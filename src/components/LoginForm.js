@@ -1,44 +1,52 @@
 import React, { Component } from 'react';
+import { Text } from 'react-native';
 // import { TextInput } from 'react-native';
-// import { TextInput } from 'react-native';
-
-import { Header, Button, Card, CardSection, Input  } from './common';
+import firebase from 'firebase';
+import { Button, Card, CardSection, Input } from './common';
 
 class LoginForm extends Component {
   state = { email: '', password: '' };
 
   render() {
-    return(
+    return (
       <Card>
-          <CardSection>
-            <Input
+        <CardSection>
+          <Input
+            placeholder="user@gmail.com"
             label="Email"
-            placeholder="user@email.com"
             value={this.state.email}
-            onChnageText={text => this.setState({ email })}
-             />
-          </CardSection>
+            onChangeText={email => this.setState({ email })}
+          />
+        </CardSection>
 
-          <CardSection>
-            <Input
+        <CardSection>
+          <Input
+            secureTextEntry
+            placeholder="password"
             label="Password"
-            secureTextEntry="true"
-            placeholder="Password"
             value={this.state.password}
-            onChnageText={text => this.setState({ password })}
-             />
-          </CardSection>
+            onChangeText={password => this.setState({ password })}
+          />
+        </CardSection>
 
+        <Text style={styles.errorTextStyle}>
+          {this.state.error}
+        </Text>
 
-          <CardSection>
-            <Button>
-              Log In
-            </Button>
-          </CardSection>
+        <CardSection>
 
+        </CardSection>
       </Card>
     );
   }
 }
+
+const styles = {
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  }
+};
 
 export default LoginForm;
