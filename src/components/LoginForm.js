@@ -9,7 +9,13 @@ class LoginForm extends Component {
   onButtonPress(){
     // we'll try to authenticate the user.
     const{ email, password } = this.state;
-    firebase.auth().signInWithEmailAndPassword();
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .catch(() => {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .catch(() => {
+          this.setState({ error: 'Authentication Failed.'});
+      })
+    });
   }
 
   render() {
@@ -34,8 +40,10 @@ class LoginForm extends Component {
           />
         </CardSection>
 
+
+
         <Text style={styles.errorTextStyle}>
-          {this.state.error}
+        {this.state.error}
         </Text>
 
         <CardSection>
