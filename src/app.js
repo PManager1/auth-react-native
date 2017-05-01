@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 import firebase from 'firebase';
 import { Header, Button, Spinner } from './components/common';
 import LoginForm from './components/LoginForm';
 
 class App extends Component {
-    state = { loggedIn: null };
+  state = { loggedIn: null };
+
+
+// Jay
+  onLogOutBtnClick() {
+    console.log('onLogOutBtnClick fired');
+    // this.setState({ error: 'Authentication Failed', loading: false });
+  }
 
   componentWillMount() {
     firebase.initializeApp({
@@ -16,39 +23,47 @@ class App extends Component {
       messagingSenderId: '682333809338'
     });
 
-// event handler whenver a user signs in or Out
-firebase.auth().onAuthStateChanged((user) => {
-   if (user) {
-     this.setState({ loggedIn: true });
-   } else {
-     this.setState({ loggedIn: false });
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true });
+      } else {
+        this.setState({ loggedIn: false });
+      }
+    });
+  }
+
+  renderContent() {
+    switch (this.state.loggedIn) {
+      case true:
+        return (
+          <Text> Log Out </Text>
+        );
+      case false:
+        return <LoginForm />;
+      default:
+        return <Spinner size="large" />;
+    }
+  }
+
+  render() {
+    return (
+      <View>
+        <Header headerText="Authentication" />
+        {this.renderContent()}
+      </View>
+    );
+  }
+}
+
+const styles = {
+  titleText: {
+    height: 20,
+    width: 10,
+     fontSize: 20,
+     fontWeight: 'bold',
    }
- });
-}
+};
 
-renderContent() {
- switch (this.state.loggedIn) {
-   case true:
-     return (
-       <Text>
-         Log Out
-       </Text>
-     );
-   case false:
-     return <LoginForm />;
-   default:
-     return <Spinner size="large" />;
- }
-}
-
-render() {
- return (
-   <View>
-     <Header headerText="Authentication" />
-     {this.renderContent()}
-   </View>
- );
-}
-}
 
 export default App;
