@@ -12,6 +12,8 @@ class LoginForm extends Component {
       <Card>
           <CardSection>
             <Input
+            label="Email"
+            placeholder="email"
             value={this.state.text}
             onChnageText={text => this.setState({ text })}
             style={{ height: 40, width: 100 }} />
