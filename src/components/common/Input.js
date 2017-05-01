@@ -9,7 +9,6 @@ const Input = ({ label, value, onChangeText })=> {
         <Text style={labelStyle}>{label}</Text>
         <TextInput
         autoCorrect={false}
-        placeholder={placeholder}
         style={inputStyle}
         value = {value}
         onChangeText = {onChangeText}
