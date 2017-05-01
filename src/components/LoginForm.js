@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { Header, Button, Card, CardSection, Input  } from './common';
 
 class LoginForm extends Component {
-  state = { text: '' };
+  state = { email: '' };
 
   render() {
     return(
@@ -13,8 +13,8 @@ class LoginForm extends Component {
           <CardSection>
             <Input
             label="Email"
-            
-            value={this.state.text}
+            placehold="user@email.com"
+            value={this.state.email}
             onChnageText={text => this.setState({ text })}
             style={{ height: 40, width: 100 }} />
           </CardSection>
